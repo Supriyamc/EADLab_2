@@ -16,7 +16,7 @@
 <jsp:include page="/jsp/header.jsp"></jsp:include>
 
 </head>
-<body class="main_body">
+<body class="">
 	<form name="" action="activities" method="post">
 	<div class="container-fluid"><br><br><br>
     
@@ -48,6 +48,36 @@
 	 </div>
                   
    </div>-->
+   <div class="row ">
+ 	   <div id="">
+ 	   <div class="col-sm-3" >
+ 	   </div>
+ 	   <div class="col-sm-1 text-right">
+    		<span class="labellogin">Exam</span>
+        </div>
+       <div class="col-sm-3" >
+   			<select class="form-control" name="exam_type" id="exam_type">
+                          
+               	<option>Semester End Exam</option>
+               	<option>Make Up Exam</option>
+               	<option>Supplementary Exam</option>
+               	
+            </select>
+       </div>
+       <div class="col-sm-1 text-right">
+    		<span class="labellogin">Course</span>
+        </div>
+       <div class="col-sm-3">
+			<select class="form-control" name="course_type" id="course_type">
+	                      
+                	<option>Mtech</option>
+                	<option>MCA</option>
+                	<option>MBA</option>
+                	
+            </select>
+       </div>
+      </div>
+      </div>
     <div class="row"><hr class="hr_color">
     	<div class="col-sm-1">
 		 </div>
@@ -62,96 +92,45 @@
 		    </div>
         </div>
         <div class="col-sm-9">
+    		
+    		
+    		
     		<div class="row">		    	
 		        <div id = "que_tab1">
 			        <div class="col-sm-2" id="que_id1">
 			    		<input type="text" id="subject_code1" name="subject_code1" class="form-control"  placeholder="Subject Code" >
 			        </div>
-			        <div class="col-sm-2" id="que_id1">
-			    		<select class="form-control" name="exam_type1" id="exam_type1">
-	                             
-	                       	<option>--Exam Type--</option>
-	                       	<option>Semester End Exam</option>
-	                       	<option>Make Up Exam</option>
-	                       	<option>Supplementary Exam</option>
-	                       	
-	                    </select>
-			        </div>
+			       
 		        </div>
 		        <div id="que_id2">
 			        <div class="col-sm-2" >
 			    		<input type="text" id="subject_code2" name="subject_code2" class="form-control"  placeholder="Subject Code" >
 			        </div>
-			        <div class="col-sm-2">
-			    		<select class="form-control" name="exam_type2" id="exam_type2">
-	                             
-	                       	<option>--Exam Type--</option>
-	                       	<option>Semester End Exam</option>
-	                       	<option>Make Up Exam</option>
-	                       	<option>Supplementary Exam</option>
-	                       	
-	                    </select>
-			        </div>
+			        
 		        </div>
 		        <div id="que_id3">
 			        <div class="col-sm-2" >
 			    		<input type="text" id="subject_code3" name="subject_code3" class="form-control"  placeholder="Subject Code" >
 			        </div>
-			        <div class="col-sm-2">
-			    		<select class="form-control" name="exam_type3" id="exam_type3">
-	                             
-	                       	<option>--Exam Type--</option>
-	                       	<option>Semester End Exam</option>
-	                       	<option>Make Up Exam</option>
-	                       	<option>Supplementary Exam</option>
-	                       	
-	                    </select>
-			        </div>
+			        
 		        </div>
 		        <div id="que_id4">
 			        <div class="col-sm-2" >
 			    		<input type="text" id="subject_code4" name="subject_code4" class="form-control"  placeholder="Subject Code" >
 			        </div>
-			        <div class="col-sm-2">
-			    		<select class="form-control" name="exam_type4" id="exam_type4">
-	                             
-	                       	<option>--Exam Type--</option>
-	                       	<option>Semester End Exam</option>
-	                       	<option>Make Up Exam</option>
-	                       	<option>Supplementary Exam</option>
-	                       	
-	                    </select>
-			        </div>
+			        
 		        </div>
 		        <div id="que_id5">
 			        <div class="col-sm-2" >
 			    		<input type="text" id="subject_code5" name="subject_code5" class="form-control"  placeholder="Subject Code" >
 			        </div>
-			        <div class="col-sm-2">
-			    		<select class="form-control" name="exam_type5" id="exam_type5">
-	                             
-	                       	<option>--Exam Type--</option>
-	                       	<option>Semester End Exam</option>
-	                       	<option>Make Up Exam</option>
-	                       	<option>Supplementary Exam</option>
-	                       	
-	                    </select>
-			        </div>
+			       
 		        </div>
 		        <div id="que_id6">
 			        <div class="col-sm-2" >
 			    		<input type="text" id="subject_code6" name="subject_code6" class="form-control"  placeholder="Subject Code" >
 			        </div>
-			        <div class="col-sm-2">
-			    		<select class="form-control" name="exam_type6" id="exam_type6">
-	                             
-	                       	<option>--Exam Type--</option>
-	                       	<option>Semester End Exam</option>
-	                       	<option>Make Up Exam</option>
-	                       	<option>Supplementary Exam</option>
-	                       	
-	                    </select>
-			        </div>
+			       
 		        </div>
 		        
 		        <div class="col-sm-2" id="button_id">                            	
@@ -166,7 +145,7 @@
            
     </div>
     
-    <div class="row"><hr class="hr_color">
+    <div class="row"><br>
     	<div class="col-sm-1">
 		 </div>
     	<div class="col-sm-2">
@@ -286,7 +265,7 @@
            
     </div>
     
-    <div class="row"><hr class="hr_color">
+    <div class="row"><br>
     	<div class="col-sm-1">
 		 </div>
     	<div class="col-sm-2">
@@ -406,7 +385,7 @@
            
     </div>
     
-    <div class="row"><hr class="hr_color">
+    <div class="row"><br>
     	<div class="col-sm-1">
 		 </div>
     	<div class="col-sm-2">
@@ -526,7 +505,7 @@
            
     </div>
     
-    <div class="row"><hr class="hr_color">
+    <div class="row"><br>
     	<div class="col-sm-1">
 		 </div>
     	<div class="col-sm-2">
@@ -646,7 +625,7 @@
            
     </div>
     
-    <div class="row"><hr class="hr_color">
+    <div class="row"><br>
     	<div class="col-sm-1">
 		 </div>
     	<div class="col-sm-2">
@@ -766,7 +745,7 @@
            
     </div>
     
-    <div class="row"><hr class="hr_color">
+    <div class="row"><br>
     	<div class="col-sm-1">
 		 </div>
     	<div class="col-sm-2">
@@ -887,7 +866,7 @@
     </div>
     
     
-    <div class="row"><hr class="hr_color">
+    <div class="row"><br>
     	<div class="col-sm-1">
 		 </div>
     	<div class="col-sm-2">
@@ -1012,13 +991,13 @@
     
     
     <div class="row"><hr class="hr_color">
-    	<div class="col-sm-1">
+    	<div class="col-sm-2">
 		 </div>
     	<div class="col-sm-2">
     		
         </div>
         
-        <div class="col-sm-9">
+        <div class="col-sm-8">
         
         	<div class="row">
 		    	<div class="col-sm-2">
