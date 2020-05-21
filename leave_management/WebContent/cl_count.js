@@ -24,8 +24,13 @@ $(document).ready(function(){
 	}
 		else {
 			var avail_cl = $("#availed_leave").val();
-			avail_cl = total_leave_appl + total_leave_appl;
+			parseInt(avail_cl);
+			parseInt(total_leave_appl);
+			//alert(typeof(avail_cl));
+			//alert(typeof(total_leave_appl));
+			avail_cl = parseInt(avail_cl) + parseInt(total_leave_appl);
 			alert(avail_cl);
+			
 		}
 		$.post("cl_count", {cl : cl , avail_cl : avail_cl , bal_cl : bal_cl , no_cl :no_cl  } ,  function(result){
 			

@@ -161,15 +161,15 @@ function casualLeave(from,to){
   <form onSubmit="casualLeave">
     <div class="form-group">
       <label for="usr"> Total Number of EL:</label>
-      <input type="Number" class="form-control"  style="width:300px;" id="usr">
+      <input type="text" class="form-control"  style="width:300px;" id="usr">
     </div>
     <div class="form-group">
       <label for="pwd">Availed EL:</label>
-      <input type="number" class="form-control" style="width:300px;" id="pwd">
+      <input type="text" class="form-control" style="width:300px;" id="pwd">
     </div>
     <div class="form-group">
       <label for="usr"> Number of days:</label>
-      <input type="Number" class="form-control"  style="width:300px;" id="usr">
+      <input type="text" class="form-control"  style="width:300px;" id="usr">
     </div>
 
    <div class='container'>
@@ -183,7 +183,7 @@ function casualLeave(from,to){
   <br>
     <div class="form-group">
       <label for="usr"> Balance:</label>
-      <input type="Number" class="form-control"  style="width:300px;" id="usr">
+      <input type="text" class="form-control"  style="width:300px;" id="usr">
     </div>
 
 </form>

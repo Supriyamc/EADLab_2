@@ -36,7 +36,7 @@ public class cl_count extends HttpServlet {
 		//response.getWriter().append("Served at get request ");
 		//doPost(request, response);
 		try{ 
-			String faculty_id = "ravikumar";
+			String faculty_id = "rk";
 			Class.forName("com.mysql.jdbc.Driver");  
 			/*Connection con=DriverManager.getConnection(  
 			"jdbc:mysql://192.169.197.128:3306/rits_db","rits","Welcome@12#");*/
@@ -104,7 +104,7 @@ public class cl_count extends HttpServlet {
 			PreparedStatement st = con 
 	                   .prepareStatement("insert into casual_leave values(?, ?, ?, ?,?)"); 
 			
-			st.setString(1, "ravikumar");
+			st.setString(1, "rk");
 			st.setInt(2, cl);
 			st.setInt(3, avail_cl); 
 			st.setInt(4, bal_cl);
@@ -117,12 +117,12 @@ public class cl_count extends HttpServlet {
 				String sql = "UPDATE casual_leave SET faculty_id =?, cl =?, avail_cl =?,  bal_cl=?, no_cl =? where faculty_id = ?";
 				System.out.println("update here");
 				PreparedStatement ut = con.prepareStatement(sql);
-				ut.setString(1, "ravikumar");
+				ut.setString(1, "rk");
 				ut.setInt(2, cl);
 				ut.setInt(3, avail_cl); 
 				ut.setInt(4, bal_cl);
 				ut.setInt(5, no_cl);
-				ut.setString(6, "ravikumar");
+				ut.setString(6, "rk");
 				ut.executeUpdate();			  
 	            // Close all the connections 
 	            ut.close(); 
