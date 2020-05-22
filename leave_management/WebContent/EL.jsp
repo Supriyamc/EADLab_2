@@ -92,7 +92,7 @@ function earnedLeave(from,to){
         /*
         max 4 days + 2 weekend (because if it is 4 days window, there is possibility of only one weekend can come in between)
         */
-        if(dayDiff > 6){
+        if(dayDiff > 12){
           document.getElementsByName('msg')[0].innerText = "Not apporved as it is more than 4 days";
         } else {
             
@@ -101,13 +101,13 @@ function earnedLeave(from,to){
             so if from day is wed ie 3 and to day is next week monday ie 1 then fromDay > toDay so it crosses the whole weekend
             */
             if(fromDate.getDay() > toDate.getDay()){   
-                dayDiff = dayDiff - 2
+                dayDiff = dayDiff
             } else {
               if(fromDate.getDay() >5 || fromDate.getDay()<1){  // if from day is sat or sun
-                dayDiff = dayDiff - 1
+                dayDiff = dayDiff
              }
               if(toDate.getDay() > 5 || toDate.getDay()<1){   // if to day is sat or sun
-                dayDiff = dayDiff - 1
+                dayDiff = dayDiff
               }
             }
             if(dayDiff <= 0){     // if only weekend dates are selected in to and from

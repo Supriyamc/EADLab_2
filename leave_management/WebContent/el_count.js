@@ -32,7 +32,7 @@ $(document).ready(function(){
 			alert(avail_el);
 			
 		}
-		$.post("cl_count", {el : el , avail_el : avail_el , bal_el : bal_el , no_el :no_el  } ,  function(result){
+		$.post("el_count", {el : el , avail_el : avail_el , bal_el : bal_el , no_el :no_el  } ,  function(result){
 			
 		});
 	});

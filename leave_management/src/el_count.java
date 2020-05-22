@@ -114,7 +114,7 @@ public class el_count extends HttpServlet {
             st.close(); 
 			}
 			else {
-				String sql = "UPDATE casual_leave SET faculty_id =?, el =?, avail_el =?,  bal_el=?, no_el =? where faculty_id = ?";
+				String sql = "UPDATE earned_leave SET faculty_id =?, el =?, avail_el =?,  bal_el=?, no_el =? where faculty_id = ?";
 				System.out.println("update here");
 				PreparedStatement ut = con.prepareStatement(sql);
 				ut.setString(1, "rk");

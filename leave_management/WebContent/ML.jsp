@@ -59,7 +59,7 @@
   // assuming both fields are non empty
   // assuming levase remain variable as int and have value in range [0,15] that will be global
 
-var levaseRemain = 10
+var levaseRemain = 183
 function maternityLeave(from,to){
   if(levaseRemain == 0){
       document.getElementsByName('msg')[0].innerText = "No leaves left";
@@ -92,8 +92,8 @@ function maternityLeave(from,to){
         /*
         max 4 days + 2 weekend (because if it is 4 days window, there is possibility of only one weekend can come in between)
         */
-        if(dayDiff > 6){
-          document.getElementsByName('msg')[0].innerText = "Not apporved as it is more than 4 days";
+        if(dayDiff > 185){
+          document.getElementsByName('msg')[0].innerText = "Not apporved as it is more than 183 days";
         } else {
             /*
             for 4 days, if weekends come in between then following condition will be true 
@@ -101,18 +101,18 @@ function maternityLeave(from,to){
             so if from day is wed ie 3 and to day is next week monday ie 1 then fromDay > toDay so it crosses the whole weekend
             */
             if(fromDate.getDay() > toDate.getDay()){   
-                dayDiff = dayDiff - 2
+                dayDiff = dayDiff
             } else {
               if(fromDate.getDay() > 5 || fromDate.getDay()<1){  // if from day is sat or sun
-                dayDiff = dayDiff - 1
+                dayDiff = dayDiff
               }
               if(toDate.getDay() > 5 || toDate.getDay()<1){   // if to day is sat or sun
-                dayDiff = dayDiff - 1
+                dayDiff = dayDiff
               }
             }
             if(dayDiff <= 0){     // if only weekend dates are selected in to and from
               document.getElementsByName('msg')[0].innerText = "No leaves";
-            } else if(dayDiff <= 4 && levaseRemain - dayDiff >= 0){     // new day limit is less equal to 4
+            } else if(dayDiff <= 183 && levaseRemain - dayDiff >= 0){     // new day limit is less equal to 4
             	
             	var inputF = document.getElementById("total_leave_appl");
             	var inputF = dayDiff;
@@ -178,7 +178,7 @@ function maternityLeave(from,to){
 
     <div class="form-group">
       <label for="usr"> Total Number of ML:</label>
-      <input type="number" id="total_leave" class="form-control"  style="width:300px;"  value ="10" readonly>
+      <input type="number" id="total_leave" class="form-control"  style="width:300px;"  value ="183" readonly>
     </div>
     <div class="form-group">
       <label for="pwd">Availed ML:</label>
@@ -202,7 +202,7 @@ function maternityLeave(from,to){
   
     <div class="form-group">
       <label for="usr"> Balance:</label>
-      <input type="number" id="balance_leave" class="form-control"  style="width:300px;" value="10" readonly>
+      <input type="number" id="balance_leave" class="form-control"  style="width:300px;" value="183" readonly>
     </div>
     <div class="form-group">
 		<button type="button" id=" maternity_leave"> Save</button>
