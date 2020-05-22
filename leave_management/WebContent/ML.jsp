@@ -22,7 +22,7 @@
         <!-- Datepicker -->
         <link href='bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css' rel='stylesheet' type='text/css'>
         <script src='bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js' type='text/javascript'></script>
-	<script src="el_count.js"></script>
+	<script src="ml_count.js"></script>
 
   <style>
   .img {
@@ -60,7 +60,7 @@
   // assuming levase remain variable as int and have value in range [0,15] that will be global
 
 var levaseRemain = 10
-function earnedLeave(from,to){
+function maternityLeave(from,to){
   if(levaseRemain == 0){
       document.getElementsByName('msg')[0].innerText = "No leaves left";
       return;
@@ -95,24 +95,24 @@ function earnedLeave(from,to){
         if(dayDiff > 6){
           document.getElementsByName('msg')[0].innerText = "Not apporved as it is more than 4 days";
         } else {
-            
-            /*for 4 days, if weekends come in between then following condition will be true 
+            /*
+            for 4 days, if weekends come in between then following condition will be true 
             function getDay() returns the day of the week from sun 0 to sat 6
             so if from day is wed ie 3 and to day is next week monday ie 1 then fromDay > toDay so it crosses the whole weekend
             */
             if(fromDate.getDay() > toDate.getDay()){   
                 dayDiff = dayDiff - 2
             } else {
-              if(fromDate.getDay() >5 || fromDate.getDay()<1){  // if from day is sat or sun
+              if(fromDate.getDay() > 5 || fromDate.getDay()<1){  // if from day is sat or sun
                 dayDiff = dayDiff - 1
-             }
+              }
               if(toDate.getDay() > 5 || toDate.getDay()<1){   // if to day is sat or sun
                 dayDiff = dayDiff - 1
               }
             }
             if(dayDiff <= 0){     // if only weekend dates are selected in to and from
               document.getElementsByName('msg')[0].innerText = "No leaves";
-            } else if(dayDiff <= 10 && levaseRemain - dayDiff >= 0){     // new day limit is less equal to 4
+            } else if(dayDiff <= 4 && levaseRemain - dayDiff >= 0){     // new day limit is less equal to 4
             	
             	var inputF = document.getElementById("total_leave_appl");
             	var inputF = dayDiff;
@@ -172,16 +172,16 @@ function earnedLeave(from,to){
 </nav>
 <div class ="div.b">
 <div class="container">
-  <h2 style="margin-top: 65px">Earned Leave</h2>
+  <h2 style="margin-top: 65px">Maternity Leave</h2>
   <hr>
   
 
     <div class="form-group">
-      <label for="usr"> Total Number of EL:</label>
+      <label for="usr"> Total Number of ML:</label>
       <input type="number" id="total_leave" class="form-control"  style="width:300px;"  value ="10" readonly>
     </div>
     <div class="form-group">
-      <label for="pwd">Availed EL:</label>
+      <label for="pwd">Availed ML:</label>
       <input type="number" id="availed_leave" class="form-control" style="width:300px;"  value="0" readonly>
     </div>
     <div class="form-group">
@@ -194,7 +194,7 @@ function earnedLeave(from,to){
             <input type="date" class="form-control" id="from" name="fromdate" placeholder='Select Date' style='width: 200px;' > <br>
             <input type="date" class="form-control" id="to"  name="todate" placeholder='Select Date' style='width: 200px;' >
         </div>
-	<button onclick="earnedLeave(document.getElementsByName('fromdate')[0].value,document.getElementsByName('todate')[0].value);">calculate </button>
+	<button onclick="maternityLeave(document.getElementsByName('fromdate')[0].value,document.getElementsByName('todate')[0].value);">calculate </button>
 	<p name="msg"></p>
   <p name="days"></p>
   <input type="number" id="total_leave_appl">
@@ -205,7 +205,7 @@ function earnedLeave(from,to){
       <input type="number" id="balance_leave" class="form-control"  style="width:300px;" value="10" readonly>
     </div>
     <div class="form-group">
-		<button type="button" id="earned_leave"> Save</button>
+		<button type="button" id=" maternity_leave"> Save</button>
     </div>
 
 
