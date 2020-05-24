@@ -69,28 +69,35 @@
   <form>
     <div class="form-group">
       <label for="usr"> Faculty Name:</label>
-      <input type="text" class="form-control"  style="width:400px;" id="usr">
+      <input type="text" class="form-control" value="<% out.println(session.getAttribute("faculty_name")); %>"  style="width:400px;">
     </div>
     <div class="form-group">
       <label for="pwd">Faculty ID:</label>
-      <input type="text" class="form-control" style="width:400px;" id="pwd">
+      <input type="text" class="form-control" id="faculty_id" value="<% out.println(session.getAttribute("faculty_id")); %>" style="width:400px;" >
     </div>
     <div class="form-group">
       <label for="usr"> Designation:</label>
-      <input type="text" class="form-control"  style="width:400px;" id="usr">
+      <input type="text" class="form-control"  value="<% out.println(session.getAttribute("designation")); %>" style="width:400px;" id="usr">
     </div>
 
    <div class="form-group">
     <label for="usr"> Gender:</label>
     <br>
-  <input type="radio" name="gender" value="male"> Male<br>
+  <input type="radio" name="gender" id="male_gen" onclick="check()" value="male"> Male<br>
   <input type="radio" name="gender" value="female"> Female<br>
-  
+  <script>
+function check() {
+ 	if(document.getElementById("male_gen").checked == true) {
+    //alert("check");
+ 		document.getElementById("mll").style.display = "none";
+    }
+}
+</script>
 
   <br>
     <div class="form-group">
       <label for="usr"> Email ID:</label>
-      <input type="Email" class="form-control"  style="width:400px;" id="usr">
+      <input type="Email" class="form-control" value="<% out.println(session.getAttribute("email")); %>" style="width:400px;" id="usr">
     </div>
 
 
@@ -105,7 +112,7 @@
       <li><a href="CL.jsp"><b>Casual Leave </b></a></li>
       <li><a href="EL.jsp"><b>Earned Leave</b></a></li>
       <li><a href="RH.jsp"><b>Restricted Leave</b></a></li>
-      <li><a href="ML.jsp"><b>Maternity Leave</b></a></li></center>
+      <li id="mll"><a href="ML.jsp"><b>Maternity Leave</b></a></li></center>
     </ul>
   </div>
 </div>

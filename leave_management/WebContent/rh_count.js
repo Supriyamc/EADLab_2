@@ -15,6 +15,7 @@ $(document).ready(function(){
 		var bal_rh = $("#balance_leave").val();
 		var total_leave_appl = $("#total_leave_appl").val();
 		var no_rh =  $("#total_leave_appl").val();
+		//alert(no_rh);
 		var rh = $("#total_leave").val();
 		
 		if(bal_rh == 2) {
@@ -29,11 +30,18 @@ $(document).ready(function(){
 			//alert(typeof(avail_rh));
 			//alert(typeof(total_leave_appl));
 			avail_rh = parseInt(avail_rh) + parseInt(total_leave_appl);
-			alert(avail_rh);
+			//alert(avail_rh);
 			
 		}
-		$.post("rh_count", {rh : rh , avail_rh : avail_rh , bal_rh : bal_rh , no_rh :no_rh  } ,  function(result){
+		if(bal_rh <= 0) {
 			
-		});
+			
+			alert("no leaves left");
+		}
+		else {
+			$.post("rh_count", {rh : rh , avail_rh : avail_rh , bal_rh : bal_rh , no_rh :no_rh  } ,  function(result){
+				
+			});
+		}
 	});
 	});

@@ -196,8 +196,8 @@ function maternityLeave(from,to){
         </div>
 	<button onclick="maternityLeave(document.getElementsByName('fromdate')[0].value,document.getElementsByName('todate')[0].value);">calculate </button>
 	<p name="msg"></p>
-  <p name="days"></p>
-  <input type="number" id="total_leave_appl">
+    <p name="days"></p>
+  <input type="number" id="total_leave_appl" style="display:none">
   <br>
   
     <div class="form-group">

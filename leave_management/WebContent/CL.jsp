@@ -175,7 +175,7 @@ function casualLeave(from,to){
   <h2 style="margin-top: 65px">Casual Leave</h2>
   <hr>
   
-
+<input type="text"  id="faculty_id" style="display:none">
     <div class="form-group">
       <label for="usr"> Total Number of CL:</label>
       <input type="number" id="total_leave" class="form-control"  style="width:300px;"  value ="15" readonly>
@@ -197,7 +197,7 @@ function casualLeave(from,to){
 	<button onclick="casualLeave(document.getElementsByName('fromdate')[0].value,document.getElementsByName('todate')[0].value);">calculate </button>
 	<p name="msg"></p>
   <p name="days"></p>
-  <input type="number" id="total_leave_appl">
+  <input type="number" id="total_leave_appl" style="display:none">
   <br>
   
     <div class="form-group">
@@ -205,7 +205,7 @@ function casualLeave(from,to){
       <input type="number" id="balance_leave" class="form-control"  style="width:300px;" value="15" readonly>
     </div>
     <div class="form-group">
-		<button type="button" id="casual_leave"> Save</button>
+		<button type="button" id="casual_leave" > Save</button>
     </div>
 
 

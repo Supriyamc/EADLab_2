@@ -36,7 +36,7 @@ public class rh_count extends HttpServlet {
 		//response.getWriter().append("Served at get request ");
 		//doPost(request, response);
 		try{ 
-			String faculty_id = "rk";
+			String faculty_id = "fffff";
 			Class.forName("com.mysql.jdbc.Driver");  
 			/*Connection con=DriverManager.getConnection(  
 			"jdbc:mysql://192.169.197.128:3306/rits_db","rits","Welcome@12#");*/
@@ -100,11 +100,11 @@ public class rh_count extends HttpServlet {
 			//here rits_db is database name, rits is username and password  
 			//PreparedStatement st = con 	                .prepareStatement("insert into QpSetting values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)"); 
 			
-			if(bal_rh== 10) {
+			if(bal_rh== 2) {
 			PreparedStatement st = con 
 	                   .prepareStatement("insert into ristricted_leave values(?, ?, ?, ?,?)"); 
 			
-			st.setString(1, "rk");
+			st.setString(1, "fffff");
 			st.setInt(2, rh);
 			st.setInt(3, avail_rh); 
 			st.setInt(4, bal_rh);
@@ -114,15 +114,15 @@ public class rh_count extends HttpServlet {
             st.close(); 
 			}
 			else {
-				String sql = "UPDATE casual_leave SET faculty_id =?, rh =?, avail_rh =?,  bal_rh=?, no_rh =? where faculty_id = ?";
+				String sql = "UPDATE ristricted_leave SET faculty_id =?, rh =?, avail_rh =?,  bal_rh=?, no_rh =? where faculty_id = ?";
 				System.out.println("update here");
 				PreparedStatement ut = con.prepareStatement(sql);
-				ut.setString(1, "rk");
+				ut.setString(1, "fffff");
 				ut.setInt(2, rh);
 				ut.setInt(3, avail_rh); 
 				ut.setInt(4, bal_rh);
 				ut.setInt(5, no_rh);
-				ut.setString(6, "rk");
+				ut.setString(6, "fffff");
 				ut.executeUpdate();			  
 	            // Close all the connections 
 	            ut.close(); 

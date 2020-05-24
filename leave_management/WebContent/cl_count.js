@@ -7,6 +7,7 @@ $(document).ready(function(){
 		$("#total_leave").val(js_arr[0].cl);
 		$("#balance_leave").val(bal_leave);
 		$("#availed_leave").val(js_arr[0].avail_cl);
+		$("#faculty_id").val(js_arr[0].faculty_id);
 	});
 	//alert("hi");
 	$("#casual_leave").click(function(){
@@ -16,6 +17,7 @@ $(document).ready(function(){
 		var total_leave_appl = $("#total_leave_appl").val();
 		var no_cl =  $("#total_leave_appl").val();
 		var cl = $("#total_leave").val();
+	
 		
 		if(bal_cl == 15) {
 			

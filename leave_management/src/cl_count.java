@@ -36,7 +36,7 @@ public class cl_count extends HttpServlet {
 		//response.getWriter().append("Served at get request ");
 		//doPost(request, response);
 		try{ 
-			String faculty_id = "rk";
+			String faculty_id = request.getParameter("faculty_id");
 			Class.forName("com.mysql.jdbc.Driver");  
 			/*Connection con=DriverManager.getConnection(  
 			"jdbc:mysql://192.169.197.128:3306/rits_db","rits","Welcome@12#");*/
@@ -56,6 +56,7 @@ public class cl_count extends HttpServlet {
 			while(rs.next()) {
 				
 			JSONObject record = new JSONObject();
+			record.put("faculty_id", rs.getString("faculty_id"));
 			record.put("cl", rs.getInt("cl"));
 		    record.put("bal_cl", rs.getInt("bal_cl"));
 		    record.put("avail_cl", rs.getInt("avail_cl"));
@@ -92,6 +93,7 @@ public class cl_count extends HttpServlet {
 		int avail_cl = Integer.parseInt(request.getParameter("avail_cl"));
 		int bal_cl = Integer.parseInt(request.getParameter("bal_cl"));
 		int no_cl = Integer.parseInt(request.getParameter("no_cl"));
+		String faculty_id = request.getParameter("faculty_id");
 		System.out.println("java running");
 		try{  
 			Class.forName("com.mysql.jdbc.Driver");  
@@ -104,7 +106,8 @@ public class cl_count extends HttpServlet {
 			PreparedStatement st = con 
 	                   .prepareStatement("insert into casual_leave values(?, ?, ?, ?,?)"); 
 			
-			st.setString(1, "rk");
+			
+			st.setString(1, faculty_id);
 			st.setInt(2, cl);
 			st.setInt(3, avail_cl); 
 			st.setInt(4, bal_cl);
@@ -117,7 +120,7 @@ public class cl_count extends HttpServlet {
 				String sql = "UPDATE casual_leave SET faculty_id =?, cl =?, avail_cl =?,  bal_cl=?, no_cl =? where faculty_id = ?";
 				System.out.println("update here");
 				PreparedStatement ut = con.prepareStatement(sql);
-				ut.setString(1, "rk");
+				ut.setString(1, faculty_id);
 				ut.setInt(2, cl);
 				ut.setInt(3, avail_cl); 
 				ut.setInt(4, bal_cl);
