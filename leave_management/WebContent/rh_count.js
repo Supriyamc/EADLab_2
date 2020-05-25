@@ -1,12 +1,17 @@
 $(document).ready(function(){
-	
-	$.get("rh_count" ,  function(result){
+	var faculty_id = $("#faculty_id").val();
+	$.post("rh_load" ,{faculty_id :faculty_id},  function(result){
+		console.log(result);
 		var js_arr = JSON.parse(result);
-		//alert(js_arr[0].rh);
+		console.log(result);
+		//alert(js_arr[0].cl);
 		var bal_leave = js_arr[0].rh - js_arr[0].avail_rh;
+		//alert(bal_leave);
 		$("#total_leave").val(js_arr[0].rh);
 		$("#balance_leave").val(bal_leave);
 		$("#availed_leave").val(js_arr[0].avail_rh);
+		$("#faculty_id").val(js_arr[0].faculty_id);
+		//alert(js_arr[0].faculty_id);
 	});
 	//alert("hi");
 	$("#ristricted_leave").click(function(){
@@ -15,8 +20,9 @@ $(document).ready(function(){
 		var bal_rh = $("#balance_leave").val();
 		var total_leave_appl = $("#total_leave_appl").val();
 		var no_rh =  $("#total_leave_appl").val();
-		//alert(no_rh);
 		var rh = $("#total_leave").val();
+		var faculty_id = $("#faculty_id").val();
+	
 		
 		if(bal_rh == 2) {
 			
@@ -27,21 +33,14 @@ $(document).ready(function(){
 			var avail_rh = $("#availed_leave").val();
 			parseInt(avail_rh);
 			parseInt(total_leave_appl);
-			//alert(typeof(avail_rh));
+			//alert(typeof(avail_cl));
 			//alert(typeof(total_leave_appl));
 			avail_rh = parseInt(avail_rh) + parseInt(total_leave_appl);
 			//alert(avail_rh);
 			
 		}
-		if(bal_rh <= 0) {
+		$.post("rh_count", {rh : rh , avail_rh : avail_rh , bal_rh : bal_rh , no_rh :no_rh , faculty_id : faculty_id  } ,  function(result){
 			
-			
-			alert("no leaves left");
-		}
-		else {
-			$.post("rh_count", {rh : rh , avail_rh : avail_rh , bal_rh : bal_rh , no_rh :no_rh  } ,  function(result){
-				
-			});
-		}
+		});
 	});
 	});

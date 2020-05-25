@@ -94,7 +94,8 @@ public class cl_count extends HttpServlet {
 		int bal_cl = Integer.parseInt(request.getParameter("bal_cl"));
 		int no_cl = Integer.parseInt(request.getParameter("no_cl"));
 		String faculty_id = request.getParameter("faculty_id");
-		System.out.println("java running");
+		System.out.println("java running"+bal_cl);
+		
 		try{  
 			Class.forName("com.mysql.jdbc.Driver");  
 			Connection con=DriverManager.getConnection(  
@@ -112,6 +113,7 @@ public class cl_count extends HttpServlet {
 			st.setInt(3, avail_cl); 
 			st.setInt(4, bal_cl);
 			st.setInt(5, no_cl);
+			
 			st.executeUpdate();			  
             // Close all the connections 
             st.close(); 
@@ -125,7 +127,7 @@ public class cl_count extends HttpServlet {
 				ut.setInt(3, avail_cl); 
 				ut.setInt(4, bal_cl);
 				ut.setInt(5, no_cl);
-				ut.setString(6, "rk");
+				ut.setString(6, faculty_id);
 				ut.executeUpdate();			  
 	            // Close all the connections 
 	            ut.close(); 

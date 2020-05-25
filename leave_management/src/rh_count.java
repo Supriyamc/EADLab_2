@@ -36,7 +36,7 @@ public class rh_count extends HttpServlet {
 		//response.getWriter().append("Served at get request ");
 		//doPost(request, response);
 		try{ 
-			String faculty_id = "fffff";
+			String faculty_id = request.getParameter("faculty_id");
 			Class.forName("com.mysql.jdbc.Driver");  
 			/*Connection con=DriverManager.getConnection(  
 			"jdbc:mysql://192.169.197.128:3306/rits_db","rits","Welcome@12#");*/
@@ -56,6 +56,7 @@ public class rh_count extends HttpServlet {
 			while(rs.next()) {
 				
 			JSONObject record = new JSONObject();
+			record.put("faculty_id", rs.getString("faculty_id"));
 			record.put("rh", rs.getInt("rh"));
 		    record.put("bal_rh", rs.getInt("bal_rh"));
 		    record.put("avail_rh", rs.getInt("avail_rh"));
@@ -92,7 +93,9 @@ public class rh_count extends HttpServlet {
 		int avail_rh = Integer.parseInt(request.getParameter("avail_rh"));
 		int bal_rh = Integer.parseInt(request.getParameter("bal_rh"));
 		int no_rh = Integer.parseInt(request.getParameter("no_rh"));
-		System.out.println("java running");
+		String faculty_id = request.getParameter("faculty_id");
+		System.out.println("java running"+bal_rh);
+		
 		try{  
 			Class.forName("com.mysql.jdbc.Driver");  
 			Connection con=DriverManager.getConnection(  
@@ -104,11 +107,13 @@ public class rh_count extends HttpServlet {
 			PreparedStatement st = con 
 	                   .prepareStatement("insert into ristricted_leave values(?, ?, ?, ?,?)"); 
 			
-			st.setString(1, "fffff");
+			
+			st.setString(1, faculty_id);
 			st.setInt(2, rh);
 			st.setInt(3, avail_rh); 
 			st.setInt(4, bal_rh);
 			st.setInt(5, no_rh);
+			
 			st.executeUpdate();			  
             // Close all the connections 
             st.close(); 
@@ -117,12 +122,12 @@ public class rh_count extends HttpServlet {
 				String sql = "UPDATE ristricted_leave SET faculty_id =?, rh =?, avail_rh =?,  bal_rh=?, no_rh =? where faculty_id = ?";
 				System.out.println("update here");
 				PreparedStatement ut = con.prepareStatement(sql);
-				ut.setString(1, "fffff");
+				ut.setString(1, faculty_id);
 				ut.setInt(2, rh);
 				ut.setInt(3, avail_rh); 
 				ut.setInt(4, bal_rh);
 				ut.setInt(5, no_rh);
-				ut.setString(6, "fffff");
+				ut.setString(6, faculty_id);
 				ut.executeUpdate();			  
 	            // Close all the connections 
 	            ut.close(); 

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head >
-  <title>Ristrcticted Leave</title>
+  <title>Restrcticted Leave</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -89,7 +89,7 @@ Note -
 </script>
 
  </head>
-<body style="background-color:  #C0C0C0">
+<body style="background-color:  #FFFFFF">
 
 
 <div class="paddin">
@@ -120,7 +120,7 @@ Note -
       </div>
     </div>
   </div>
-  <a class="navbar-brand"  href="#">Logout</a>
+  <a class="navbar-brand"  href="login.jsp">Logout</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -128,10 +128,10 @@ Note -
 </nav>
 <div class ="div.b">
 <div class="container">
-  <h2 style="margin-top: 65px">Ristricted Leave</h2>
+  <h2 style="margin-top: 65px">Restricted Leave</h2>
   <hr>
   
-
+  <input type="text"  id="faculty_id"  value="<% out.println(session.getAttribute("faculty_id")); %>" style="display:none">
     <div class="form-group">
       <label for="usr"> Total Number of RH:</label>
       <input type="number" id="total_leave" class="form-control"  style="width:300px;"  value ="2" readonly>
@@ -160,8 +160,7 @@ Note -
     <option value="10">10. Christmas Eve: December 24,2020</option>
 </select>
 	<button onclick="restrictedHoliday()">Leave </button>
-      <p name="msg"></p>
-      <p name="days"></p>
+      
   <input type="number" id="total_leave_appl" style="display:none">
 
   <br>

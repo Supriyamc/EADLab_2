@@ -36,7 +36,7 @@ public class ml_count extends HttpServlet {
 		//response.getWriter().append("Served at get request ");
 		//doPost(request, response);
 		try{ 
-			String faculty_id = "rk";
+			String faculty_id = request.getParameter("faculty_id");
 			Class.forName("com.mysql.jdbc.Driver");  
 			/*Connection con=DriverManager.getConnection(  
 			"jdbc:mysql://192.169.197.128:3306/rits_db","rits","Welcome@12#");*/
@@ -47,7 +47,7 @@ public class ml_count extends HttpServlet {
 			ResultSet rs = null;
 			
 			
-				 rs=stmt.executeQuery("select * from  maternity_leave where  faculty_id='"+faculty_id+"'");
+				 rs=stmt.executeQuery("select * from maternity_leave where  faculty_id='"+faculty_id+"'");
 							
 			
 			
@@ -56,6 +56,7 @@ public class ml_count extends HttpServlet {
 			while(rs.next()) {
 				
 			JSONObject record = new JSONObject();
+			record.put("faculty_id", rs.getString("faculty_id"));
 			record.put("ml", rs.getInt("ml"));
 		    record.put("bal_ml", rs.getInt("bal_ml"));
 		    record.put("avail_ml", rs.getInt("avail_ml"));
@@ -92,7 +93,9 @@ public class ml_count extends HttpServlet {
 		int avail_ml = Integer.parseInt(request.getParameter("avail_ml"));
 		int bal_ml = Integer.parseInt(request.getParameter("bal_ml"));
 		int no_ml = Integer.parseInt(request.getParameter("no_ml"));
-		System.out.println("java running");
+		String faculty_id = request.getParameter("faculty_id");
+		System.out.println("java running"+bal_ml);
+		
 		try{  
 			Class.forName("com.mysql.jdbc.Driver");  
 			Connection con=DriverManager.getConnection(  
@@ -100,29 +103,31 @@ public class ml_count extends HttpServlet {
 			//here rits_db is database name, rits is username and password  
 			//PreparedStatement st = con 	                .prepareStatement("insert into QpSetting values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)"); 
 			
-			if(bal_ml== 10) {
+			if(bal_ml== 183) {
 			PreparedStatement st = con 
-	                   .prepareStatement("insert into  maternity_leave values(?, ?, ?, ?,?)"); 
+	                   .prepareStatement("insert into maternity_leave values(?, ?, ?, ?,?)"); 
 			
-			st.setString(1, "rk");
+			
+			st.setString(1, faculty_id);
 			st.setInt(2, ml);
 			st.setInt(3, avail_ml); 
 			st.setInt(4, bal_ml);
 			st.setInt(5, no_ml);
+			
 			st.executeUpdate();			  
             // Close all the connections 
             st.close(); 
 			}
 			else {
-				String sql = "UPDATE  maternity_leave SET faculty_id =?, ml =?, avail_ml =?,  bal_ml=?, no_ml =? where faculty_id = ?";
+				String sql = "UPDATE maternity_leave SET faculty_id =?, ml =?, avail_ml =?,  bal_ml=?, no_ml =? where faculty_id = ?";
 				System.out.println("update here");
 				PreparedStatement ut = con.prepareStatement(sql);
-				ut.setString(1, "rk");
+				ut.setString(1, faculty_id);
 				ut.setInt(2, ml);
 				ut.setInt(3, avail_ml); 
 				ut.setInt(4, bal_ml);
 				ut.setInt(5, no_ml);
-				ut.setString(6, "rk");
+				ut.setString(6, faculty_id);
 				ut.executeUpdate();			  
 	            // Close all the connections 
 	            ut.close(); 

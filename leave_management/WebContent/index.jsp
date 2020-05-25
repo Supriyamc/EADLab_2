@@ -27,7 +27,7 @@
   .
   </style>
 </head>
-<body style="background-color:  #C0C0C0">
+<body style="background-color:  #FFFFFF">
 
 <div class="paddin">
   <div class="container" >

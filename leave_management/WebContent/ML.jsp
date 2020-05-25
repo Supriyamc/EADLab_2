@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head >
-  <title>Earned Leave</title>
+  <title>Maternity Leave</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
@@ -133,7 +133,7 @@ function maternityLeave(from,to){
 </script>
 
  </head>
-<body style="background-color:  #C0C0C0">
+<body style="background-color:  #FFFFFF">
 
 
 <div class="paddin">
@@ -164,7 +164,7 @@ function maternityLeave(from,to){
       </div>
     </div>
   </div>
-  <a class="navbar-brand"  href="#">Logout</a>
+  <a class="navbar-brand"  href="login.jsp">Logout</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -175,7 +175,7 @@ function maternityLeave(from,to){
   <h2 style="margin-top: 65px">Maternity Leave</h2>
   <hr>
   
-
+ <input type="text"  id="faculty_id"  value="<% out.println(session.getAttribute("faculty_id")); %>" style="display:none">
     <div class="form-group">
       <label for="usr"> Total Number of ML:</label>
       <input type="number" id="total_leave" class="form-control"  style="width:300px;"  value ="183" readonly>
@@ -195,8 +195,7 @@ function maternityLeave(from,to){
             <input type="date" class="form-control" id="to"  name="todate" placeholder='Select Date' style='width: 200px;' >
         </div>
 	<button onclick="maternityLeave(document.getElementsByName('fromdate')[0].value,document.getElementsByName('todate')[0].value);">calculate </button>
-	<p name="msg"></p>
-    <p name="days"></p>
+	
   <input type="number" id="total_leave_appl" style="display:none">
   <br>
   
@@ -205,7 +204,7 @@ function maternityLeave(from,to){
       <input type="number" id="balance_leave" class="form-control"  style="width:300px;" value="183" readonly>
     </div>
     <div class="form-group">
-		<button type="button" id=" maternity_leave"> Save</button>
+		<button type="button" id="maternity_leave"> Save</button>
     </div>
 
 
