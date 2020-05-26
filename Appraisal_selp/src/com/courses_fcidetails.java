@@ -59,8 +59,9 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		//fetching the username and password from the user input with names "username" and "password" which is present in the login.jsp page
 		
 		
-		String Date = request.getParameter("Date");
-		System.out.println("!!!!!!!!!!!!!!!!!!!!!!!*");
+		String Date = request.getParameter("year");
+		//System.out.println("!!!!!!!!!!!!!!!!!!!!!!!*");
+		String Faculty_Id = request.getParameter("faculty_id");
 		System.out.println(Date);
 		try{  
 			Class.forName("com.mysql.jdbc.Driver");  
@@ -73,7 +74,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			ResultSet rs = null;
 			//ResultSet rs = stmt.executeQuery("");
 			
-			rs=stmt.executeQuery("select * from courses_handled where Date='"+Date+"'");
+			rs=stmt.executeQuery("select * from courses_handled where Date='"+Date+"' and Faculty_Id='"+Faculty_Id+"'");
 				// System.out.println("inside "+course_type);
 			
 			JSONObject jsonObject = new JSONObject();
@@ -88,7 +89,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		   array.put(record);
 			
 		}					
-			System.out.println(array);	
+			System.out.println("FCIIIIIIIIIIIII"+array);	
 			String str = array.toString();
 			response.getWriter().append(str);			
 			con.close();  

@@ -60,7 +60,8 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		
 		
 		String Date_of_filing = request.getParameter("Date_of_filing");
-		System.out.println(Date_of_filing);
+		String Faculty_Id = request.getParameter("faculty_id");
+		//System.out.println(Date_of_filing);
 		try{  
 			Class.forName("com.mysql.jdbc.Driver");  
 			/*Connection con=DriverManager.getConnection(  
@@ -72,7 +73,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			ResultSet rs = null;
 			//ResultSet rs = stmt.executeQuery("");
 			
-			rs=stmt.executeQuery("select * from patents where Date_of_filing='"+Date_of_filing+"'");
+			rs=stmt.executeQuery("select * from patents where Date_of_filing='"+Date_of_filing+"' and Faculty_Id='"+Faculty_Id+"'");
 				// System.out.println("inside "+course_type);
 			
 			JSONObject jsonObject = new JSONObject();

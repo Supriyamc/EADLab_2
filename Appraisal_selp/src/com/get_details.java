@@ -64,7 +64,9 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		
 		
 		String year = request.getParameter("year");
-		System.out.println(year);
+		String Faculty_Id = request.getParameter("faculty_id");
+		
+		System.out.println(Faculty_Id +"dgfdgdfgdfgdfgdgdfg");
 		try{  
 			Class.forName("com.mysql.jdbc.Driver");  
 			/*Connection con=DriverManager.getConnection(  
@@ -77,7 +79,8 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			//ResultSet rs = stmt.executeQuery("");
 			
 			
-				 rs=stmt.executeQuery("select * from book_chapters where year='"+year+"'");
+	 rs=stmt.executeQuery("select * from book_chapters where year='"+year+"'and Faculty_Id='"+Faculty_Id+"'");
+			
 				// System.out.println("inside "+course_type);
 			
 			

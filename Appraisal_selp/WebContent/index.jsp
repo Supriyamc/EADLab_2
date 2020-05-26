@@ -24,7 +24,25 @@
 				
 						
 		</script>
-	 
+	 <style>
+	 input, select, textarea {
+        background-color: #eee;
+    opacity: 1;
+    display: block;
+    
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 12px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+	 </style>
 	</head>
 	<body> 
 	<div class="container-fluid" style="background-color:indigo"><br>
@@ -45,9 +63,8 @@
                              
                         
                             <div class="row">
-                            <div class="col-sm-2">
-                            </div>
-                            <div class="col-sm-8">
+                            
+                            <div class="col-sm-12">
 					<form method="post" action="AjaxFile" id="formAppraisal">
 					<div id="printDiv">
 					
@@ -55,16 +72,27 @@
 					<h2 class="text-center">Self-Appraisal Form</h2><br>
 					
 			
-				<div class="row">             
-                                   <div class="col-sm-5">
-                                    <div class="col">
-      <input type="month" name="startYear" id="startYear" 
-       		min="2018-03" value="yyyy-mm" class="form-control"></div></div>  
-       		<div class="col-sm-5">
-       		<div class="col" >
-      <input type="text" name="endYear" id="endYear" maxlength="4" class="form-control"/>
-                                        </div> </div> </div><br>
-                  <button type="button" style="background-color:WhiteSmoke" id="get_info">submit</button>
+					<div class="row"> 
+						<div class="col-sm-7">
+						</div>            
+                         <div class="col-sm-3">
+                            <div class="col">
+     				 <input type="month" name="startYear" id="startYear" 
+       			  min="2018-03" value="yyyy-mm" class="form-control"></div>
+       					</div>
+       					<div class="col-sm-2 text-right">
+                           <button type="button" class="btn btn-sm btn-default btn-block"  id="get_info">submit</button>
+       					</div>  
+       						
+       		<!--	<div class="col-sm-5">
+       				<div class="col" >
+      					<input type="text" name="endYear" id="endYear" maxlength="4" class="form-control"/>
+                                     </div> 
+                                      </div> 
+                                      -->
+                        </div>
+                                       <br>
+                  
 					<!--<p>
 						Annual Appraisal Form for the Year <input type="month" 
 							name="startYear" id="startYear" 
@@ -85,26 +113,33 @@
 						
 						<tr>
 							<td>Fullname:</td>
-							<td><input type="text" required placeholder="fullName" id="fullName" name="fullName" 
-							class="form-control" ></td>
+							<td><input type="text" required readonly value = "<% out.println(session.getAttribute("faculty_name")); %>" id="fullName" name="fullName" 
+							class="form-control" >
+							
+							<input type="text" style="display:none;" required readonly value = "<% out.println(session.getAttribute("faculty_id")); %>" id="faculty_id" name="faculty_id" 
+							class="form-control" >
+							
+							</td>
 						</tr>
 						<tr>
 							<td>Department:</td>
-							<td><input type="text" required placeholder="department" id="department" 
+							<td><input type="text" required  readonly value = "<% out.println(session.getAttribute("department")); %>" placeholder="department" id="department" 
 							name="department" class="form-control" ></td>
 						</tr>
 						
 						<tr>
 							<td>Designation:</td>
-							<td><select id="designation" name="designation" class="form-control">
-								<option value="Assistant Professor">Assistant Professor</option>
+							<td><select class="form-control" id="designation" name="designation">
+								<option	value="Assistant Professor">Assistant Professor</option>
 								<option value="Associate Professor">Associate Professor</option>
 								<option value="Professor">Professor</option>
 								<option value="Head">Professor and Head</option>
-								</select>
+							</select>						
+							
 							</td>
 						</tr>
 					</table>
+					
 					<table class="table table-bordered">
 						<caption>Details of Activities</caption>
 						<tbody>
@@ -121,12 +156,10 @@
 							<tr>
 								<td>1</td>
 								<td>FCI Score (Average of all courses handled)</td>
-								<td><input type="number" id="fciScore" name="fciScore"
-									required="required" min="0" value="0" class="form-control"/> 
+								<td><input type="number"  readonly id="fciScore" name="fciScore"
+									required="required" min="0" value="0"/> 
 								
-								<br><b>Summary sheet in following format signed by HoD.</b>
-								<br><b>Sub Code. 					FCI</b>
-								<br><b>Average</b>
+								
 								</td>
 							</tr> 
 							
@@ -140,7 +173,7 @@
 								<td>No. of non-paid refered journal papers in SJR*<br>(The
 									faculty should be one among first 3 authors)
 								</td>
-								<td><input type="number" id="nirfJournals"
+								<td><input type="number" readonly id="nirfJournals"
 									name="nirfJournals" min="0" value="0" />
 							<!-- 	<input type="button" value="Submit" id="nirf"> -->
 								<script>
@@ -189,7 +222,7 @@
 							<td>No. of indexed conference papers in SJR<br>(The
 								faculty should be one among first 3 authors)
 							</td>
-							<td><input type="number" id="indexedPapers"
+							<td><input type="number" readonly id="indexedPapers"
 								name="indexedPapers" min="0" value="0" />
 							<!-- 	<input type="button" value="Submit" id="indexp"> -->
 								<script>
@@ -230,7 +263,7 @@
 									conferences<br>(The faculty should be one among first 3
 									authors)  
 								</td>
-								<td><input type="number" id="journalPublication"
+								<td><input type="number" readonly id="journalPublication"
 									name="journalPublication" min="0" value="0" />
 							<!--  		<input type="button" value="Submit" id="jpublicatn">-->
 								<script>
@@ -280,14 +313,122 @@
 								</td>
 								</tr>
 								</table>
+								
 								<script>
 								$(document).ready(function() {
 									$("#get_info").click(function() {
+										//alert(year);
+										
+									var faculty_id = $("#faculty_id").val();
 										//alert("done"); 
 										var year_no_filter = $("#startYear").val();
 										var dtArray = year_no_filter.split("-");
 										var year = (dtArray[0]);
-										$.post("get_details" , {year : year} , function(result) {
+										
+										///funded projects
+										$.post("funded_details" , {Year : year,faculty_id : faculty_id} , function(result) {
+											var js_arr = JSON.parse(result);
+											var count = 0;
+											console.log(js_arr);
+											//$("#fciScore").val(js_arr[0].FCI_Scores);
+											if(js_arr[0].Amt_great_ten >= 1000000) {
+												//alert(js_arr[0].Amt_great_ten);
+												count = 1;
+												
+												$("#fundedProjects1").val(count);
+												
+											}
+											if(js_arr[0].Amt_five_to_ten >= 500000 && js_arr[0].Amt_five_to_ten<1000000 ) {
+												//alert(js_arr[0].Amt_five_to_ten);
+												count = 1;
+												
+												$("#fundedProjects2").val(count);
+												
+											}
+											if(js_arr[0].Amt_one_to_five >=100000 && js_arr[0].Amt_one_to_five<5000000 ) {
+												//alert(js_arr[0].Amt_one_to_five);
+												count = 1;
+												
+												$("#fundedProjects3").val(count);
+												
+											}
+											if(js_arr[0].Amt_less_one<100000 ) {
+												//alert(js_arr[0].Amt_less_one);
+												count = 1;
+												
+												$("#fundedProjects4").val(count);
+												
+											}
+											//alert(js_arr[0].Amt_great_ten);
+											
+										})
+										////fci
+										$.post("courses_fcidetails" , {year : year,faculty_id : faculty_id} , function(result) {
+											var js_arr = JSON.parse(result);
+											console.log(js_arr);
+											$("#fciScore").val(js_arr[0].FCI_Scores);
+											//alert(js_arr[0].FCI_Scores);
+										});
+										///consulting projects
+										$.post("consultingpro_details" , {Year : year,faculty_id : faculty_id} , function(result) {
+											var js_arr = JSON.parse(result);
+											var count = 0;
+											console.log(js_arr);
+											//$("#fciScore").val(js_arr[0].FCI_Scores);
+											if(js_arr[0].Amt_great_ten >= 1000000) {
+												//alert(js_arr[0].Amt_great_ten);
+												count = 1;
+												
+												$("#consultingProjects1").val(count);
+												
+											}
+											if(js_arr[0].Amt_five_to_ten >= 500000 && js_arr[0].Amt_five_to_ten<1000000 ) {
+												//alert(js_arr[0].Amt_five_to_ten);
+												count = 1;
+												
+												$("#consultingProjects2").val(count);
+												
+											}
+											if(js_arr[0].Amt_one_to_five >=100000 && js_arr[0].Amt_one_to_five<5000000 ) {
+												//alert(js_arr[0].Amt_one_to_five);
+												count = 1;
+												
+												$("#consultingProjects3").val(count);
+												
+											}
+											if(js_arr[0].Amt_less_one<100000 ) {
+												//alert(js_arr[0].Amt_less_one);
+												count = 1;
+												
+												$("#consultingProjects4").val(count);
+												
+											}
+											//alert(js_arr[0].Amt_great_ten);
+											
+										})
+										////cor3days
+										$.post("coordinator3_days" , {Event_Date : year,faculty_id : faculty_id} , function(result) {
+											var js_arr = JSON.parse(result);
+											console.log(js_arr);
+											$("#threeDayWorkShop").val(js_arr[0].Count);
+											$("#threeDayWorkShop1").val(js_arr[0].Event_Name);
+											$("#threeDayWorkShop2").val(js_arr[0].Event_Date);
+											//alert(js_arr[0].FCI_Scores);
+										});
+										
+										
+										///cor5days
+										$.post("coordinator5days" , {Event_Date : year,faculty_id : faculty_id} , function(result) {
+											var js_arr = JSON.parse(result);
+											console.log(js_arr);
+											$("#fiveDayWorkShop").val(js_arr[0].Count);
+											$("#fiveDayWorkShop1").val(js_arr[0].Event_Name);
+											$("#fiveDayWorkShop2").val(js_arr[0].Event_Date);
+											//alert(js_arr[0].FCI_Scores);
+										});
+										////books
+										
+										$.post("get_details" , {year : year,faculty_id : faculty_id} , function(result) {
 											//var custom_arr = JSON.parse(result);
 											var js_arr = JSON.parse(result);
 											$("#books").val(js_arr.length);
@@ -323,10 +464,10 @@
 										$("#bookTable").append(add4); }
 										
 										});
-										/////fci 
+										 
 										
 										/////non paid refered
-										$.post("nonpaid_details" , {Publication_Date : year} , function(result) {
+										$.post("nonpaid_details" , {Publication_Date : year,faculty_id : faculty_id} , function(result) {
 										//var custom_arr = JSON.parse(result);
 										var js_arr = JSON.parse(result);
 										$("#nirfJournals").val(js_arr.length);
@@ -353,7 +494,7 @@
 										});
 										
 										/////indexed conf
-										$.post("Indexedconf_details" , {Publication_Date : year} , function(result) {
+										$.post("Indexedconf_details" , {Publication_Date : year,faculty_id : faculty_id} , function(result) {
 										//var custom_arr = JSON.parse(result);
 										var js_arr = JSON.parse(result);
 										$("#indexedPapers").val(js_arr.length);
@@ -363,7 +504,7 @@
 										var add2="<tr>";
 										add2+="<td><b>Paper Title</b></td>";
 										add2+="<td><b>Conference Name</b></td>";
-										add2+="<td><b>Publication Yea</b></td>";
+										add2+="<td><b>Publication Year</b></td>";
 										add2+="</tr>";
 										$("#indexpTable").append(add2);
 										for(var i=1;i<=indexpValue;i++){
@@ -379,7 +520,7 @@
 										
 										//////nonpaid nonrefered
 										
-										$.post("nonpaidnon_details" , {Publication_Date : year} , function(result) {
+										$.post("nonpaidnon_details" , {Publication_Date : year,faculty_id : faculty_id} , function(result) {
 										//var custom_arr = JSON.parse(result);
 										var js_arr = JSON.parse(result);
 										$("#journalPublication").val(js_arr.length);
@@ -406,7 +547,7 @@
 											});
 								///////////disclosure
 								
-										$.post("disclose_details" , {Year : year} , function(result) {
+										$.post("disclose_details" , {Year : year,faculty_id : faculty_id} , function(result) {
 											//var custom_arr = JSON.parse(result);
 											var js_arr = JSON.parse(result);
 											$("#disclosuresFiled").val(js_arr.length);
@@ -432,7 +573,7 @@
 										
 										});
 										////////////
-										$.post("patents_details" , {Date_of_filing : year} , function(result) {
+										$.post("patents_details" , {Date_of_filing : year,faculty_id : faculty_id} , function(result) {
 											//var custom_arr = JSON.parse(result);
 											var js_arr = JSON.parse(result);
 											$("#patentsGranted").val(js_arr.length);
@@ -459,7 +600,7 @@
 										});
 										
 										//////
-										$.post("researchug_details" , {year : year} , function(result) {
+										$.post("researchug_details" , {year : year,faculty_id : faculty_id} , function(result) {
 											//var custom_arr = JSON.parse(result);
 											var js_arr = JSON.parse(result);
 											$("#researchGuidanceUg").val(js_arr.length);
@@ -485,7 +626,7 @@
 																		
 											});
 										//////
-										$.post("researchpg_details" , {year : year} , function(result) {
+										$.post("researchpg_details" , {year : year,faculty_id : faculty_id} , function(result) {
 											//var custom_arr = JSON.parse(result);
 											var js_arr = JSON.parse(result);
 											$("#researchGuidanceMaster").val(js_arr.length);
@@ -511,7 +652,7 @@
 																		
 											});
 										/////////////////rphd
-										$.post("researchphd_details" , {year : year} , function(result) {
+										$.post("researchphd_details" , {year : year,faculty_id : faculty_id} , function(result) {
 											//var custom_arr = JSON.parse(result);
 											var js_arr = JSON.parse(result);
 											$("#researchGuidancePhd").val(js_arr.length);
@@ -540,7 +681,7 @@
 											});
 										
 										/////conference
-										$.post("confer_details" , {Date : year} , function(result) {
+										$.post("confer_details" , {Date : year,faculty_id : faculty_id} , function(result) {
 											//var custom_arr = JSON.parse(result);
 											var js_arr = JSON.parse(result);
 											$("#chairReviewer").val(js_arr.length);
@@ -565,8 +706,10 @@
 											$("#chairReviewTable").append(add13); }
 										
 										});
+										
+										
 										////technical talk
-										$.post("technical_talks" , {Date : year} , function(result) {
+										$.post("technical_talks" , {Date : year,faculty_id : faculty_id} , function(result) {
 										//var custom_arr = JSON.parse(result);
 										var js_arr = JSON.parse(result);
 										$("#invitedTalksOutside").val(js_arr.length);
@@ -592,7 +735,7 @@
 										
 										
 										///// event out 
-										$.post("eventsout_details" , {Date : year} , function(result) {
+										$.post("eventsout_details" , {Date : year,faculty_id : faculty_id} , function(result) {
 										//var custom_arr = JSON.parse(result);
 										var js_arr = JSON.parse(result);
 										$("#eventsOutside").val(js_arr.length);
@@ -616,7 +759,7 @@
 																		
 											});
 										/// events in
-										$.post("eventsin_details" , {Date : year} , function(result) {
+										$.post("eventsin_details" , {Date : year,faculty_id : faculty_id} , function(result) {
 										//var custom_arr = JSON.parse(result);
 										var js_arr = JSON.parse(result);
 										$("#invitedTalksInside").val(js_arr.length);
@@ -639,7 +782,7 @@
 											});
 										
 										////indus relations
-										$.post("industry_details" , {Date : year} , function(result) {
+										$.post("industry_details" , {Date : year,faculty_id : faculty_id} , function(result) {
 										//var custom_arr = JSON.parse(result);
 										var js_arr = JSON.parse(result);
 										$("#industryRelations").val(js_arr.length);
@@ -663,7 +806,7 @@
 												$("#industryRelationTable").append(add18); }						
 												});
 										/////other services
-										$.post("othrservice_details" , {Date : year} , function(result) {
+										$.post("othrservice_details" , {Date : year,faculty_id : faculty_id} , function(result) {
 										//var custom_arr = JSON.parse(result);
 										var js_arr = JSON.parse(result);
 										$("#othServices").val(js_arr.length);
@@ -685,7 +828,7 @@
 										});
 										
 										/////awards
-										$.post("awards_details" , {Date : year} , function(result) {
+										$.post("awards_details" , {Date : year,faculty_id : faculty_id} , function(result) {
 											//var custom_arr = JSON.parse(result);
 											var js_arr = JSON.parse(result);
 											$("#awardsHonours").val(js_arr.length);
@@ -770,7 +913,7 @@
 							<tr>
 								<td>7</td>
 								<td>Patents Granted*</td>
-								<td><input type="number"  id="patentsGranted"
+								<td><input type="number"  readonly id="patentsGranted"
 									name="patentsGranted" min="0" value="0" />
 								
 						<!--  		<input type="button" value="Submit" id="patentGranted" />-->
@@ -810,7 +953,7 @@
 							<tr>
 								<td>8</td>
 								<td>Research Guidance Under Graduate Program</td>
-								<td><b>Total Number Of students Guided:</b><input type="number" id="researchGuidanceUg"
+								<td><b>Total Number Of students Guided:</b><input type="number" readonly id="researchGuidanceUg"
 									name="researchGuidanceUg" min="0" value="0" />
 							<!--  	<input type="button" value="Submit" id="researchGuideUg" />-->
 								<script>
@@ -845,7 +988,7 @@
 							<tr>
 								<td>9</td>
 								<td>Research Guidance Master's Program</td>
-								<td><input type="number" id="researchGuidanceMaster"
+								<td><input type="number" readonly id="researchGuidanceMaster"
 									name="researchGuidanceMaster" min="0" value="0" />
 						<!--  		<input type="button" value="Submit" id="researchGuideMaster" />-->
 								<script>
@@ -880,7 +1023,7 @@
 							<tr>
 								<td>10</td>
 								<td>Research Guidance Ph.D.</td>
-								<td><input type="number" id="researchGuidancePhd"
+								<td><input type="number" readonly id="researchGuidancePhd"
 									name="researchGuidancePhd" min="0" value="0" />
 						<!--  		<input type="button" value="Submit" id="researchGuidePhd" />-->
 								<script>
@@ -923,10 +1066,10 @@
 								<td>
 								<table>
 								
-							<tr><td style="width: 50%;"><label for="fundedProjects1">&gt;= 10 Lakhs: </label> </td> <td style="width: 50%;"> <input type="number" id="fundedProjects1" name="fundedProjects1" min="0" value="0" /> </td> </tr> 
-							<tr><td style="width: 50%;"><label for="fundedProjects2">&gt;=5 Lakhs and &lt; 10 Lakhs: </label> </td> <td style="width: 50%;"> <input type="number" id="fundedProjects2" name="fundedProjects2" min="0" value="0" /> </td> </tr>
-							<tr><td style="width: 50%;"><label for="fundedProjects3">&gt;=1 Lakhs and &lt; 5 Lakhs: </label> </td> <td style="width: 50%;"> <input type="number" id="fundedProjects3" name="fundedProjects3" min="0" value="0" /> </td> </tr> 
-							<tr><td style="width: 50%;"><label for="fundedProjects4">&lt;1 Lakhs: </label> </td> <td style="width: 50%;"> <input type="number" id="fundedProjects4" name="fundedProjects4" min="0" value="0" /> </td> </tr>
+							<tr><td style="width: 50%;"><label for="fundedProjects1">&gt;= 10 Lakhs: </label> </td> <td style="width: 50%;"> <input type="number" readonly id="fundedProjects1" name="fundedProjects1" min="0" value="0" /> </td> </tr> 
+							<tr><td style="width: 50%;"><label for="fundedProjects2">&gt;=5 Lakhs and &lt; 10 Lakhs: </label> </td> <td style="width: 50%;"> <input type="number" readonly id="fundedProjects2" name="fundedProjects2" min="0" value="0" /> </td> </tr>
+							<tr><td style="width: 50%;"><label for="fundedProjects3">&gt;=1 Lakhs and &lt; 5 Lakhs: </label> </td> <td style="width: 50%;"> <input type="number" readonly id="fundedProjects3" name="fundedProjects3" min="0" value="0" /> </td> </tr> 
+							<tr><td style="width: 50%;"><label for="fundedProjects4">&lt;1 Lakhs: </label> </td> <td style="width: 50%;"> <input type="number" readonly id="fundedProjects4" name="fundedProjects4" min="0" value="0" /> </td> </tr>
 							
 								</table>
 								</td>
@@ -950,10 +1093,10 @@
 									name="consultingProjects" min="0" /></td> -->
 								<td>
 								<table>
-							<tr> <td style="width: 50%;">	<label for="consultingProjects1">&gt;= 10 Lakhs: </label> </td> <td style="width: 50%;"> <input type="number" id="consultingProjects1" name="consultingProjects1" min="0" value="0" /> </td> </tr>
-							<tr> <td style="width: 50%;">	<label for="consultingProjects2">&gt;= 5 Lakhs and &lt; 10 Lakhs: </label> </td> <td style="width: 50%;"> <input type="number" id="consultingProjects2" name="consultingProjects2" min="0" value="0" /> </td> </tr>
-							<tr> <td style="width: 50%;"> 	<label for="consultingProjects3">&gt;=1 Lakhs and &lt; 5 Lakhs: </label> </td> <td style="width: 50%;">  <input type="number" id="consultingProjects3" name="consultingProjects3" min="0" value="0" /> </td> </tr>
-							<tr> <td style="width: 50%;">	<label for="consultingProjects4">&lt;1 Lakhs: </label> </td> <td style="width: 50%;"> <input type="number" id="consultingProjects4" name="consultingProjects4" min="0" value="0" /> </td> </tr>
+							<tr> <td style="width: 50%;">	<label for="consultingProjects1">&gt;= 10 Lakhs: </label> </td> <td style="width: 50%;"> <input type="number" readonly id="consultingProjects1" name="consultingProjects1" min="0" value="0" /> </td> </tr>
+							<tr> <td style="width: 50%;">	<label for="consultingProjects2">&gt;= 5 Lakhs and &lt; 10 Lakhs: </label> </td> <td style="width: 50%;"> <input type="number" readonly id="consultingProjects2" name="consultingProjects2" min="0" value="0" /> </td> </tr>
+							<tr> <td style="width: 50%;"> 	<label for="consultingProjects3">&gt;=1 Lakhs and &lt; 5 Lakhs: </label> </td> <td style="width: 50%;">  <input type="number" readonly id="consultingProjects3" name="consultingProjects3" min="0" value="0" /> </td> </tr>
+							<tr> <td style="width: 50%;">	<label for="consultingProjects4">&lt;1 Lakhs: </label> </td> <td style="width: 50%;"> <input type="number" readonly id="consultingProjects4" name="consultingProjects4" min="0" value="0" /> </td> </tr>
 							<tr> 
 								</table>	
 								</td>
@@ -979,7 +1122,7 @@
 								<td>13</td>
 								<td>No. of Conference Chair, Session Chair, Reviewer of Q1
 									or Q2 Journal</td>
-								<td><input type="number" id="chairReviewer"
+								<td><input type="number" readonly id="chairReviewer"
 									name="chairReviewer" min="0" value="0" />
 							<!--  		<input type="button" value="Submit" id="chairReview">-->
 									<script>
@@ -1021,8 +1164,8 @@
 									name="fswCoordinator" min="0" /></td> -->
 								<td>
 								<table>
-							<tr> <td style="width: 50%;"> <label for="fiveDayWorkShop">5 Days: </label> </td> <td style="width: 50%;"> <input type="number" id="fiveDayWorkShop" name="fiveDayWorkShop" min="0" value="0" /> </td> <td style="width:50%;"> <label>Event_Name</label></td> <td style="width: 50%;"> <input type="text" id="fiveDayWorkShop1" name="fiveDayWorkshop1" min="0" value="0" /> </td> <td style="width:50%;"> <label>Event_Date</label></td> <td style="width: 50%;"> <input type="text" id="fiveDayWorkShop2" name="EventDate" min="0" value="0" /> </td> </tr> 
-							<tr> <td style="width: 50%;"> <label for="threeDayWorkShop">3 Days: </label> </td> <td style="width: 50%;"> <input type="number" id="threeDayWorkShop" name="threeDayWorkShop" min="0" value="0" /></td> <td style="width: 50%;"><label>Event_Name</label></td> <td style="width: 50%;"><input type="text" id="threeDayWorkShop1" name="threeDayWorkShop1" min="0" value="0" /></td><td style="width:50%;"> <label>Event_Date</label></td> <td style="width: 50%;"> <input type="text" id="threeDayWorkShop2" name="EventDate" min="0" value="0" /> </td></tr>
+							<tr> <td style="width: 50%;"> <label for="fiveDayWorkShop">5 Days: </label> </td> <td style="width: 50%;"> <input type="number" readonly id="fiveDayWorkShop" name="fiveDayWorkShop" min="0" value="0" /> </td> <td style="width:50%;"> <label>Event_Name</label></td> <td style="width: 50%;"> <input type="text" id="fiveDayWorkShop1" name="fiveDayWorkshop1" min="0" value="0" /> </td> <td style="width:50%;"> <label>Event_Date</label></td> <td style="width: 50%;"> <input type="text" id="fiveDayWorkShop2" name="EventDate" min="0" value="0" /> </td> </tr> 
+							<tr> <td style="width: 50%;"> <label for="threeDayWorkShop">3 Days: </label> </td> <td style="width: 50%;"> <input type="number" readonly id="threeDayWorkShop" name="threeDayWorkShop" min="0" value="0" /></td> <td style="width: 50%;"><label>Event_Name</label></td> <td style="width: 50%;"><input type="text" id="threeDayWorkShop1" name="threeDayWorkShop1" min="0" value="0" /></td><td style="width:50%;"> <label>Event_Date</label></td> <td style="width: 50%;"> <input type="text" id="threeDayWorkShop2" name="EventDate" min="0" value="0" /> </td></tr>
 							
 								</table>
 								</td>
@@ -1037,7 +1180,7 @@
 							<tr>
 								<td>15</td>
 								<td>No. of invited technical talks outside the institute</td>
-								<td><input type="number" id="invitedTalksOutside"
+								<td><input type="number" readonly id="invitedTalksOutside"
 									name="invitedTalksOutside" min="0" value="0" />
 						<!--  		<input type="button" value="Submit" id="invitedTO">-->
 									<script>
@@ -1076,7 +1219,7 @@
 								<td>16</td>
 								<td>No. of events participation outside the institute<br>(FDP/Seminar/Workshop/Conference)
 								</td>
-								<td><input type="number" id="eventsOutside"
+								<td><input type="number" readonly id="eventsOutside"
 									name="eventsOutside" min="0" value="0" />
 						<!--  		<input type="button" value="Submit" id="eventOutside">-->
 									<script>
@@ -1115,7 +1258,7 @@
 								<td>17</td>
 								<td>No. of events participation inside the institute<br>(FDP/Seminar/Workshop/Conference)
 								</td>
-								<td><input type="number" id="invitedTalksInside"
+								<td><input type="number" readonly id="invitedTalksInside"
 									name="invitedTalksInside" min="0" value="0" />
 					<!--  			<input type="button" value="Submit" id="invitedTI">-->
 									<script>
@@ -1153,7 +1296,7 @@
 								<td>Industry Relations<br>(MoU, Co-hosted event,
 									Technical Talk Series)
 								</td>
-								<td><input type="number" id="industryRelations"
+								<td><input type="number" readonly id="industryRelations"
 									name="industryRelations" min="0" value="0" />
 					<!--  			<input type="button" value="Submit" id="industryRelation">-->
 									<script>
@@ -1187,7 +1330,7 @@
 								</td>
 								
 							</tr>
-							<tr>
+							<!--  <tr>
 								<td>19</td>
 								<td>Institutional/Departmental Services such as NBA/NIRF</td>
 								<td>
@@ -1203,15 +1346,16 @@
 									id="instDeptServicesCoordinatorDisplay"
 									name="instDeptServicesCoordinatorDisplay" min="0" readonly="readonly" /><br> <br>
 									<input type="text" id="instDeptServicesOthersDisplay"
-									name="instDeptServicesOthersDisplay" min="0" readonly="readonly" /><br> <br> -->
+									name="instDeptServicesOthersDisplay" min="0" readonly="readonly" /><br> <br> 
 									
 								
-							</tr>
+							</tr>-->
+							
 							<tr>
-								<td>20</td>
+								<td>19</td>
 								<td>Other Services to the institution or society
 									contribution</td>
-					  			<td><input type="number" id="othServices" name="othServices"
+					  			<td><input type="number" readonly id="othServices" name="othServices"
 									min="0" value="0" />
 							<!--	<input type="button" value="Submit" id="othService">-->
 									<script>
@@ -1236,15 +1380,16 @@
 							}); 
 								</script> 
 								<table id="othServiceTable">
-								
 								</table>			
 								</td>
-								
 							</tr>
+							
+							
+							
 							<tr>
-								<td>21</td>
+								<td>20</td>
 								<td>Awards and Honours</td>
-								<td><input type="number" id="awardsHonours"
+								<td><input type="number" readonly id="awardsHonours"
 									name="awardsHonours" min="0" value="0" />
 					<!--  			<input type="button" value="Submit" id="awardsHonour">-->
 									<script>
@@ -1296,10 +1441,10 @@
 									min="0" value="0" /></td>
 							</tr>-->
 							<tr>
-								<td>22</td>
+								<td>21</td>
 								<td>Any other major contributions: (Max 500 characters)</td>
 								<td><textarea rows="10" cols="50" name="anyContribution"
-										id="anyContribution" value="0"></textarea></td>
+										 id="anyContribution" value="0"></textarea></td>
 							</tr>
 							<tr>
 								<td colspan="2">Total Score:</td>
@@ -1324,10 +1469,12 @@
 					<div id="skipPrintDiv">
 					<table class="table table-bordered">
 							<tr>
-								<td><button type="reset" style="background-color:WhiteSmoke">Reset</button></td>
-								<td><div onClick="calculateDiv()"class="btn btn-territory" style="background-color:WhiteSmoke" 
+							
+							<!-- <td><button type="reset" style="background-color:WhiteSmoke">Reset</button></td> -->
+								
+								<td><div onClick="calculateDiv()" class="btn btn-sm btn-default text-right" style="background-color:WhiteSmoke" 
 								id="calculate">Calculate Scores</div></td>
-								<td><div id="printBtn" onClick="printDiv()"  class="btn btn-primary" >Print
+								<td><div id="printBtn" onClick="printDiv()"  class="btn btn-primary btn-sm" >Print
 									Appraisal</div></td>							
 							</tr>
 					</table>  

@@ -60,8 +60,9 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		
 		
 		String Publication_Date = request.getParameter("Publication_Date");
-		System.out.println("ppppp");
-		System.out.println(Publication_Date);
+		//System.out.println("ppppp");
+		//System.out.println(Publication_Date);
+		String Faculty_Id = request.getParameter("faculty_id");
 		try{  
 			Class.forName("com.mysql.jdbc.Driver");  
 			/*Connection con=DriverManager.getConnection(  
@@ -73,7 +74,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			ResultSet rs = null;
 			//ResultSet rs = stmt.executeQuery("");
 			
-			rs=stmt.executeQuery("select * from non_paid_journal where Non_Refered_Or_Refered='NonRefered' and Publication_Date='"+Publication_Date+"'");
+			rs=stmt.executeQuery("select * from non_paid_journal where Non_Refered_Or_Refered='NonRefered' and Publication_Date='"+Publication_Date+"' and Faculty_Id='"+Faculty_Id+"'");
 				// System.out.println("inside "+course_type);
 			
 			JSONObject jsonObject = new JSONObject();

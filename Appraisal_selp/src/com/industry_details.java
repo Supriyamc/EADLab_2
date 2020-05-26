@@ -60,8 +60,9 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		
 		
 		String Date = request.getParameter("Date");
-		System.out.println("---------");
-		System.out.println(Date);
+		//System.out.println("---------");
+		//System.out.println(Date);
+		String Faculty_Id = request.getParameter("faculty_id");
 		try{  
 			Class.forName("com.mysql.jdbc.Driver");  
 			/*Connection con=DriverManager.getConnection(  
@@ -73,7 +74,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			ResultSet rs = null;
 			//ResultSet rs = stmt.executeQuery("");
 			
-			rs=stmt.executeQuery("select * from industry_relations where Date='"+Date+"'");
+			rs=stmt.executeQuery("select * from industry_relations where Date='"+Date+"' and Faculty_Id='"+Faculty_Id+"'");
 				// System.out.println("inside "+course_type);
 			
 			JSONObject jsonObject = new JSONObject();

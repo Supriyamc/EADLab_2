@@ -60,6 +60,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		
 		
 		String year = request.getParameter("year");
+		String Faculty_Id = request.getParameter("faculty_id");
 		System.out.println(year);
 		try{  
 			Class.forName("com.mysql.jdbc.Driver");  
@@ -72,7 +73,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			ResultSet rs = null;
 			//ResultSet rs = stmt.executeQuery("");
 			
-			rs=stmt.executeQuery("select * from research_guidance_for_ug where year='"+year+"'");
+			rs=stmt.executeQuery("select * from research_guidance_for_ug where Year='"+year+"' and Faculty_Id='"+Faculty_Id+"'");
 				// System.out.println("inside "+course_type);
 			
 			JSONObject jsonObject = new JSONObject();

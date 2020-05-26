@@ -37,9 +37,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.gson.*;
 
-@WebServlet("/confer_details")
+@WebServlet("/faculty_details")
 
-public class confer_details extends HttpServlet { 
+public class faculty_details extends HttpServlet { 
 	private static final long serialVersionUID = 1L;
 	
 	//the statements to connect to the default mongo server instance running at localhost with default port..
@@ -59,9 +59,8 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		//fetching the username and password from the user input with names "username" and "password" which is present in the login.jsp page
 		
 		
-		String Date = request.getParameter("Date");
-		System.out.println(Date);
-		String Faculty_Id = request.getParameter("faculty_id");
+		String Faculty_Id = request.getParameter("Faculty_Id");
+		System.out.println(Faculty_Id);
 		try{  
 			Class.forName("com.mysql.jdbc.Driver");  
 			/*Connection con=DriverManager.getConnection(  
@@ -73,7 +72,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			ResultSet rs = null;
 			//ResultSet rs = stmt.executeQuery("");
 			
-			rs=stmt.executeQuery("select * from conference where Date='"+Date+"'and Faculty_Id='"+Faculty_Id+"'");
+			rs=stmt.executeQuery("select * from faculty where Faculty_Id='"+Faculty_Id+"'");
 				// System.out.println("inside "+course_type);
 			
 			JSONObject jsonObject = new JSONObject();
@@ -82,9 +81,10 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 				
 			JSONObject record = new JSONObject();
 			record.put("Faculty_Id", rs.getString("Faculty_Id"));
-			record.put("Title", rs.getString("Title"));
-			record.put("Role", rs.getString("Role"));
-			record.put("Date", rs.getString("Date"));
+			record.put("Faculty_name", rs.getString("Faculty_name"));
+			record.put("Department", rs.getString("Department"));
+			record.put("Designation", rs.getString("Designation"));
+			
 			
 		   array.put(record);
 			

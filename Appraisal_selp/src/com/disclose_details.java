@@ -64,6 +64,8 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		
 		
 		String Year = request.getParameter("Year");
+		
+		String Faculty_Id = request.getParameter("faculty_id");
 		System.out.println(Year);
 		try{  
 			Class.forName("com.mysql.jdbc.Driver");  
@@ -76,7 +78,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			ResultSet rs = null;
 			//ResultSet rs = stmt.executeQuery("");
 			
-			rs=stmt.executeQuery("select * from disclosure_filed where Year='"+Year+"'");
+			rs=stmt.executeQuery("select * from disclosure_filed where Year='"+Year+"' and Faculty_Id='"+Faculty_Id+"'");
 				// System.out.println("inside "+course_type);
 			
 			JSONObject jsonObject = new JSONObject();

@@ -142,8 +142,8 @@ public class configuration extends HttpServlet {
 						+ "asso_Res = ? , asso_Ser = ? , pro_Teach = ?, pro_Res = ? ,pro_Ser = ?,"
 						+ "prohead_Teach = ? , prohead_Res = ? , prohead_Ser = ?, fci1 = ? ,fci2 = ?,"
 						+ "fci3 = ? , fci4 = ? , fci5 = ?, nirf1 = ? ,index1 = ?,"
-						+ "b2 = ? , dis = ? , pat = ?, rUG = ? ,rPG = ?,"
 						+ "index2 = ? , index3 = ? , jou = ?,  b1= ? ,"
+						+ "b2 = ? , dis = ? , pat = ?, rUG = ? ,rPG = ?,"
 						+ "rPHD = ? , fp1 = ? , fp2 = ?, fp3 = ? ,fp4 = ?,"
 						+ "fp5 = ? , cp1 = ? , cp2 = ?, cp3 = ? ,cp4 = ?, cp5 = ? , chair = ? , cfdp1 = ?, cfdp2 = ? ,talk = ?,"
 						+ "eveo = ? , invi = ? , ind = ?, nba1 = ? ,nba2 = ?, os1 = ?, award = ? ";

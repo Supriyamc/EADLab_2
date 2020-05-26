@@ -61,7 +61,8 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		
 		
 		String Year = request.getParameter("Year");
-		System.out.println("~~~~~~~~~");
+		String Faculty_Id = request.getParameter("faculty_id");
+		
 		System.out.println(Year);
 		try{  
 			Class.forName("com.mysql.jdbc.Driver");  
@@ -74,7 +75,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			ResultSet rs = null;
 			//ResultSet rs = stmt.executeQuery("");
 			
-			rs=stmt.executeQuery("select count(*) as Sanctioned_amt from consultancy where Sanctioned_amt>=1000000 GROUP BY Year='"+Year+"'");
+			rs=stmt.executeQuery("select * from funded_projects where  Year='"+ Year+"'and Faculty_Id='"+Faculty_Id+"'");
 			
 			// select count(*) as Sanctioned_amt from consultancy where Sanctioned_amt>=500000 and Sanctioned_amt<1000000 GROUP BY Year;
 			//select count(*) as Sanctioned_amt from consultancy where Sanctioned_amt>=100000 and Sanctioned_amt<500000 GROUP BY Year;
@@ -88,8 +89,10 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 				
 			JSONObject record = new JSONObject();
 			record.put("Faculty_Id", rs.getString("Faculty_Id"));
-			record.put("Sanctioned_amt", rs.getString("Sanctioned_amt"));
-			
+			record.put("Amt_great_ten", rs.getString("Amt_great_ten"));
+			record.put("Amt_five_to_ten", rs.getString("Amt_five_to_ten"));
+			record.put("Amt_one_to_five", rs.getString("Amt_one_to_five"));
+			record.put("Amt_less_one", rs.getString("Amt_less_one"));
 			record.put("Year", rs.getString("Year"));
 		   array.put(record);
 			

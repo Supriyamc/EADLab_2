@@ -59,9 +59,10 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 		//fetching the username and password from the user input with names "username" and "password" which is present in the login.jsp page
 		
 		
-		String  Sanctioned_date = request.getParameter(" Sanctioned_date");
-		System.out.println("++++-+-+-+-+-+-+-+");
-		System.out.println( Sanctioned_date);
+		String  Year = request.getParameter("Year");
+		//System.out.println("++++-+-+-+-+-+-+-+");
+		String Faculty_Id = request.getParameter("faculty_id");
+		System.out.println(Year);
 		try{  
 			Class.forName("com.mysql.jdbc.Driver");  
 			/*Connection con=DriverManager.getConnection(  
@@ -73,12 +74,12 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			ResultSet rs = null;
 			//ResultSet rs = stmt.executeQuery("");
 			
-			rs=stmt.executeQuery("select count(*) as Sanctioned_amt from funded_projects where Sanctioned_amt>=1000000 GROUP BY Sanctioned_date='"+ Sanctioned_date+"'");
+			//rs=stmt.executeQuery("select count(*) as Amt_great_ten from funded_projects where Amt_great_ten>=1000000 and Year='"+ Year+"'");
 				
 			// select count(*) as Sanctioned_amt from funded_projects where Sanctioned_amt>=500000 and Sanctioned_amt<1000000 GROUP BY Sanctioned_date;
 			//select count(*) as Sanctioned_amt from funded_projects where Sanctioned_amt>=100000 and Sanctioned_amt<500000 GROUP BY Sanctioned_date;
 			//select count(*) as Sanctioned_amt from funded_projects where Sanctioned_amt<100000 GROUP BY Sanctioned_date;
-			
+			rs=stmt.executeQuery("select * from funded_projects where  Year='"+ Year+"' and Faculty_Id='"+Faculty_Id+"'");
 			
 			// System.out.println("inside "+course_type);
 			
@@ -88,8 +89,11 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 				
 			JSONObject record = new JSONObject();
 			record.put("Faculty_Id", rs.getString("Faculty_Id"));
-			record.put("Sanctioned_amt", rs.getString("Sanctioned_amt"));
-			record.put("Sanctioned_date", rs.getString("Sanctioned_date"));
+			record.put("Amt_great_ten", rs.getString("Amt_great_ten"));
+			record.put("Amt_five_to_ten", rs.getString("Amt_five_to_ten"));
+			record.put("Amt_one_to_five", rs.getString("Amt_one_to_five"));
+			record.put("Amt_less_one", rs.getString("Amt_less_one"));
+			record.put("Year", rs.getString("Year"));
 			
 		   array.put(record);
 			

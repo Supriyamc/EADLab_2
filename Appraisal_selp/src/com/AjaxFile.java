@@ -70,13 +70,14 @@ public class AjaxFile extends HttpServlet {
 				while(result.next()){
 					
 					//result = result.toString();
-					System.out.println("Result:"+ result.getInt("as_Teach"));
+					//System.out.println("Result:"+ result.getInt("as_Teach"));
 					as_Teach = result.getInt("as_Teach");
 					as_Res = result.getInt("as_Res");
 					as_Ser = result.getInt("as_Ser");
 					
 					asso_Teach = result.getInt("asso_Teach");
 					asso_Res = result.getInt("asso_Res");
+					//System.out.println("Result Associate:"+ result.getInt("asso_Res"));
 					asso_Ser = result.getInt("asso_Ser");
 					
 					pro_Teach = result.getInt("pro_Teach");
@@ -96,6 +97,7 @@ public class AjaxFile extends HttpServlet {
 					
 					index1 = result.getInt("index1");
 					index2 = result.getInt("index2");
+					System.out.println("index value gg "+result.getInt("index2"));
 					index3 = result.getInt("index3");
 					
 					jou = result.getFloat("jou");
@@ -181,7 +183,7 @@ public class AjaxFile extends HttpServlet {
 	private static DecimalFormat df = new DecimalFormat("0.00");
 	
 	private void calculate() { 
-		
+		get_config();
 		
 		assignMarks(designation);
 		Rscore = researchScore();
@@ -198,19 +200,23 @@ public class AjaxFile extends HttpServlet {
 		if (desig.contains("Assistant")) { 
 			get_config();
 			Max_Teaching_Score = as_Teach;
-			System.out.println("Max teaching score:"+Max_Teaching_Score);
+			System.out.println("Assistant");
+			//System.out.println("Max teaching score:"+Max_Teaching_Score);
 			Max_Research_Score = as_Res; 
-			System.out.println("Max res score:"+Max_Research_Score);
+			//System.out.println("Max res score:"+Max_Research_Score);
 			Max_Service_Score = as_Ser;
-		System.out.println("Max service score:"+Max_Service_Score);
+		//System.out.println("Max service score:"+Max_Service_Score);
 			isAsst = 1;
 			isAssoc = 0;
 			isProf = 0;
 			isHead = 0;
 		}
 		if (desig.contains("Associate")) {
+			get_config();
+			//System.out.println("Associate");
 			Max_Teaching_Score = asso_Teach;
-			Max_Research_Score = asso_Res; 
+			Max_Research_Score = asso_Res;
+			System.out.println("Associate final"+asso_Res);
 			Max_Service_Score = asso_Ser;
 			isAsst = 0;
 			isAssoc = 1;
@@ -218,6 +224,8 @@ public class AjaxFile extends HttpServlet {
 			isHead = 0;
 		}
 		if (desig.contains("Professor") && (!desig.contains("Assistant") && !desig.contains("Associate"))) { 
+			get_config();
+			System.out.println("Professor");
 			Max_Teaching_Score = pro_Teach;
 			Max_Research_Score = pro_Res; 
 			Max_Service_Score = pro_Ser;
@@ -227,6 +235,8 @@ public class AjaxFile extends HttpServlet {
 			isHead = 0;
 		}
 		if (desig.contains("Head")) { 
+			get_config();
+			System.out.println("Head");
 			Max_Teaching_Score = prohead_Teach;
 			Max_Research_Score = prohead_Res; 
 			Max_Service_Score = prohead_Ser;
@@ -270,6 +280,7 @@ public class AjaxFile extends HttpServlet {
 		}
 		else if (isAssoc == 1) {
 			score3 = indexedPapers * (Max_Research_Score /index2);
+			System.out.println("index 2222222"+index2);
 		}
 		else if (isProf == 1 || isHead == 1) {
 			score3 = indexedPapers * (Max_Research_Score / index3);
@@ -466,7 +477,7 @@ public class AjaxFile extends HttpServlet {
 			score18 = 0;
 		}
 		
-		if (instDeptServicesCoordinator > 0 || instDeptServicesOthers > 0 || detailsOfResponsibilities > 0) {
+	/*	if (instDeptServicesCoordinator > 0 || instDeptServicesOthers > 0 || detailsOfResponsibilities > 0) {
 			if (instDeptServicesOthers == 0) {
 				score19 = nba1 * Max_Service_Score;
 			} else if (instDeptServicesCoordinator == 0) {
@@ -482,7 +493,7 @@ public class AjaxFile extends HttpServlet {
 		} else {
 			score19 = 0;
 		}
-
+*/
 		if (othServices > 0) {
 			score20 = os1 * Max_Service_Score;
 		} else {
@@ -550,8 +561,8 @@ public class AjaxFile extends HttpServlet {
 		 eventsOutside = Integer.parseInt(request.getParameter("eventsOutside"));
 		 invitedTalksInside = Integer.parseInt(request.getParameter("invitedTalksInside"));
 		 industryRelations = Integer.parseInt(request.getParameter("industryRelations"));
-		 instDeptServicesCoordinator = Integer.parseInt(request.getParameter("instDeptServicesCoordinator"));
-		 instDeptServicesOthers = Integer.parseInt(request.getParameter("instDeptServicesOthers"));
+		 //instDeptServicesCoordinator = Integer.parseInt(request.getParameter("instDeptServicesCoordinator"));
+		 //instDeptServicesOthers = Integer.parseInt(request.getParameter("instDeptServicesOthers"));
 		 //detailsOfResponsibilities = Integer.parseInt(request.getParameter("detailsOfResponsibilities"));
 		 othServices = Integer.parseInt(request.getParameter("othServices"));
 		 awardsHonours = Integer.parseInt(request.getParameter("awardsHonours"));
@@ -581,7 +592,7 @@ public class AjaxFile extends HttpServlet {
 		    	score16 = Double.parseDouble(df.format(score16));
 		    	score17 = Double.parseDouble(df.format(score17));
 		    	score18 = Double.parseDouble(df.format(score18));
-		    	score19 = Double.parseDouble(df.format(score19));
+		    	//score19 = Double.parseDouble(df.format(score19));
 		    	score20 = Double.parseDouble(df.format(score20));
 		    	score21 = Double.parseDouble(df.format(score21));
 		    	//score22 = Double.parseDouble(df.format(score22));
@@ -610,7 +621,7 @@ public class AjaxFile extends HttpServlet {
 		    	scores.put("score16", score16);
 		    	scores.put("score17", score17);
 		    	scores.put("score18", score18);
-		    	scores.put("score19", score19);
+		    	//scores.put("score19", score19);
 		    	scores.put("score20", score20);
 		    	scores.put("score21", score21);
 		    	//scores.put("score22", score22);
